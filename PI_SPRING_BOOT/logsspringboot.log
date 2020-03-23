@@ -1,0 +1,32 @@
+2020-03-23 17:17:37.252  INFO 17532 --- [main] t.esprit.spring.PiSpringBootApplication  : Starting PiSpringBootApplication on DESKTOP-6U21ERI with PID 17532 (C:\Users\SAIFOUN\Documents\workspace-sts-3.9.4.RELEASE\PI_SPRING_BOOT\target\classes started by SAIFOUN in C:\Users\SAIFOUN\Documents\workspace-sts-3.9.4.RELEASE\PI_SPRING_BOOT)
+2020-03-23 17:17:37.257  INFO 17532 --- [main] t.esprit.spring.PiSpringBootApplication  : No active profile set, falling back to default profiles: default
+2020-03-23 17:17:37.883  INFO 17532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-03-23 17:17:37.953  INFO 17532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51ms. Found 1 JPA repository interfaces.
+2020-03-23 17:17:38.523  INFO 17532 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-23 17:17:38.563  INFO 17532 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-23 17:17:38.563  INFO 17532 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-23 17:17:38.683  INFO 17532 --- [main] o.a.c.c.C.[.[localhost].[/SpringMVC]     : Initializing Spring embedded WebApplicationContext
+2020-03-23 17:17:38.683  INFO 17532 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1391 ms
+2020-03-23 17:17:38.843  INFO 17532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-03-23 17:17:39.143  INFO 17532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-03-23 17:17:39.207  INFO 17532 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-03-23 17:17:39.308  INFO 17532 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.15.Final}
+2020-03-23 17:17:39.308  INFO 17532 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-03-23 17:17:39.523  INFO 17532 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-03-23 17:17:39.633  INFO 17532 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2020-03-23 17:17:40.503  INFO 17532 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-03-23 17:17:40.893  INFO 17532 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-03-23 17:17:42.882  INFO 17532 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-23 17:17:42.923  WARN 17532 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-03-23 17:17:43.188  INFO 17532 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/SpringMVC'
+2020-03-23 17:17:43.193  INFO 17532 --- [main] t.esprit.spring.PiSpringBootApplication  : Started PiSpringBootApplication in 6.301 seconds (JVM running for 7.239)
+2020-03-23 17:19:34.032  INFO 17532 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/SpringMVC]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-23 17:19:34.032  INFO 17532 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-23 17:19:34.041  INFO 17532 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2020-03-23 18:30:00.375  INFO 17532 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-03-23 18:30:00.415  INFO 17532 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-23 18:30:00.415  INFO 17532 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-03-23 18:30:00.524  INFO 17532 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-03-23 18:30:00.565  INFO 17532 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
