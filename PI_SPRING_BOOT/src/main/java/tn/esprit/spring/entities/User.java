@@ -1,20 +1,26 @@
 package tn.esprit.spring.entities;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Utilisateur")
-public class User {
+public class User  {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
@@ -23,12 +29,13 @@ public class User {
 	Role role;
 	Date date;
 	
+	
+	
 	public User() {}
 	public User(Long id) {
 		super();
 		this.id = id;
 	}
-
 
 
 	public User(Long id, String firstname, String lastname, Role role, Date date) {
