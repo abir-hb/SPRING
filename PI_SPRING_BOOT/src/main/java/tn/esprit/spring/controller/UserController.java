@@ -46,6 +46,11 @@ public class UserController implements IUserControl{
 		 userService.updateUser(id, firstname, lastname);
 	}
 
+	@Override
+	public int getNombreUserJPQL() {
+		return userService.getNombreUserJPQL();
+	}
+
 	
 	
 	

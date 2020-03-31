@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.services.IUserService;
 
@@ -51,12 +52,21 @@ import tn.esprit.spring.services.IUserService;
 	public void deleteEmployee(@PathVariable("user-id") long userId) {
 	userService.deleteUser(userId);
 	}
-	// Modifier User
-	// http://localhost:8081/SpringMVC/servlet/modify-user
-//	@PutMapping("/modify-user")
-//	@ResponseBody
-//	public User updateEmployee(@RequestBody User user) {
-//	return userService.updateUser(user);
-//	}
+	
+	// URL : http://localhost:8081/SpringMVC/servlet/getNombreEmployeJPQL
+    @GetMapping(value = "/nb")
+    @ResponseBody
+	public int getNombreUserJPQL() {
+		
+		return userService.getNombreUserJPQL();
+	}
+ // URL : http://localhost:8081/SpringMVC/servlet/getAllEmployes
+ 	@GetMapping(value = "/getall")
+     @ResponseBody
+ 	public List<User> getAllUsers() {
+ 		
+ 		return userService.getAllUsers();
+ 	}
+    
 	}
 

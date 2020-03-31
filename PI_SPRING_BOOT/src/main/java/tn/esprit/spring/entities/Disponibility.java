@@ -8,9 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.util.Set;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -25,10 +28,10 @@ public class Disponibility {
 	
 	private String periode;
 	Date date;
-
 	
+	@OneToMany(mappedBy = "disponibility")
+    Set<UserDispo> userdispo;
 	
-		
 	public Long getId() {
 		return id;
 	}
@@ -55,6 +58,7 @@ public class Disponibility {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((periode == null) ? 0 : periode.hashCode());
+		result = prime * result + ((userdispo == null) ? 0 : userdispo.hashCode());
 		return result;
 	}
 	@Override
@@ -80,6 +84,11 @@ public class Disponibility {
 			if (other.periode != null)
 				return false;
 		} else if (!periode.equals(other.periode))
+			return false;
+		if (userdispo == null) {
+			if (other.userdispo != null)
+				return false;
+		} else if (!userdispo.equals(other.userdispo))
 			return false;
 		return true;
 	}

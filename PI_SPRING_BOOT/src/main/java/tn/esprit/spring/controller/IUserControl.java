@@ -12,4 +12,5 @@ public interface IUserControl {
 	String getLastNameByUserId(Long userId);
 	void deleteUser(Long userId);
 	public void updateUser(Long id, String firstname, String lastname);
+	public int getNombreUserJPQL();
 }

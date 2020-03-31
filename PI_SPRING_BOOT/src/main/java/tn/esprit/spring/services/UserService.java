@@ -52,5 +52,10 @@ public void updateUser(Long id, String firstname, String lastname) {
 	userr.setLastname(lastname);
 	userRepository.save(userr);
 }
+
+@Override
+public int getNombreUserJPQL() {
+	return userRepository.countuser();
+}
 	
 }

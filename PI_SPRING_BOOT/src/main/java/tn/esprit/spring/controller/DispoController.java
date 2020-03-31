@@ -25,4 +25,16 @@ public class DispoController implements IDispoControl {
 		return DispoService.getAllDispo();
 	}
 
+	@Override
+	public String deleteDispo(Long DispoId) {
+		DispoService.deleteDispo(DispoId);
+		return null;
+	}
+
+	@Override
+	public void AjouterDispoUser(int user, int Dispo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
