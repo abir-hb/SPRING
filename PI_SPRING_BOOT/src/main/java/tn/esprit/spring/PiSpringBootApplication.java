@@ -8,8 +8,7 @@ public class PiSpringBootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PiSpringBootApplication.class, args);
-		//this is a comment
-		// this is a second comment
+	
 	}
 
 }

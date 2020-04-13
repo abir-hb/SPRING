@@ -9,17 +9,17 @@ import javax.persistence.Embeddable;
 public class UserDispoKey implements Serializable {
 	
 	 @Column(name = "user_id")
-	    Long studentId;
+	    Long userId;
 	 
 	    @Column(name = "disponibility_id")
 	    Long dispoId;
 
-		public Long getStudentId() {
-			return studentId;
+		public Long getUserId() {
+			return userId;
 		}
 
-		public void setStudentId(Long studentId) {
-			this.studentId = studentId;
+		public void setUserId(Long userId) {
+			this.userId = userId;
 		}
 
 		public Long getDispoId() {
@@ -30,9 +30,10 @@ public class UserDispoKey implements Serializable {
 			this.dispoId = dispoId;
 		}
 
-		@Override
-		public String toString() {
-			return "UserDispoKey [studentId=" + studentId + ", dispoId=" + dispoId + "]";
+		public UserDispoKey(Long userId, Long dispoId) {
+			super();
+			this.userId = userId;
+			this.dispoId = dispoId;
 		}
 
 		@Override
@@ -40,7 +41,7 @@ public class UserDispoKey implements Serializable {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((dispoId == null) ? 0 : dispoId.hashCode());
-			result = prime * result + ((studentId == null) ? 0 : studentId.hashCode());
+			result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 			return result;
 		}
 
@@ -58,23 +59,19 @@ public class UserDispoKey implements Serializable {
 					return false;
 			} else if (!dispoId.equals(other.dispoId))
 				return false;
-			if (studentId == null) {
-				if (other.studentId != null)
+			if (userId == null) {
+				if (other.userId != null)
 					return false;
-			} else if (!studentId.equals(other.studentId))
+			} else if (!userId.equals(other.userId))
 				return false;
 			return true;
-		}
-
-		public UserDispoKey(Long studentId, Long dispoId) {
-			super();
-			this.studentId = studentId;
-			this.dispoId = dispoId;
 		}
 
 		public UserDispoKey() {
 			super();
 		}
+
+		
 
 		
 	    
