@@ -2,9 +2,12 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,13 +16,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -30,76 +36,104 @@ public class User  {
 	private Long id;
 	private String firstname;
 	private String lastname;
+	private Boolean Connecte=false;
 	Role role;
 	Date date;
 	
 	@OneToMany(mappedBy = "user")
     Set<UserDispo> userdispo;
+	/*
+	@JsonIgnore
+	@JsonBackReference
+	@OneToOne(mappedBy="useres")
+	private ChatMessage chatmessage;
 	
-	public User() {}
-	public User(Long id) {
-		super();
+	@JsonIgnore
+	@JsonBackReference
+	@OneToOne(mappedBy="useress")
+	private ChatMessage chatmessages;
+	*/
+	@JsonIgnore
+	@ManyToOne
+	private Chatroom chatroom;
+	/*
+	 * @OneToMany(mappedBy="chatroom",cascade=CascadeType.ALL)
+	private List<User> userrr = new ArrayList<>();
+	
+	 */
+	@OneToMany(mappedBy="usermessage",cascade=CascadeType.ALL)
+	private List<ChatMessage> chatt = new ArrayList<>();
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-	public User(Long id, String firstname, String lastname, Role role, Date date) {
-		super();
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.role = role;
-		this.date = date;
-	}
-
-
-
-	public User(String firstname, String lastname, Role role) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.role = role;
-	}
-
 
 	public String getFirstname() {
 		return firstname;
 	}
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 	public String getLastname() {
 		return lastname;
 	}
+
+	public Boolean getConnecte() {
+		return Connecte;
+	}
+
+	public void setConnecte(Boolean connecte) {
+		Connecte = connecte;
+	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
-	@Enumerated(EnumType.STRING)
+
 	public Role getRole() {
 		return role;
 	}
+
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	@Temporal(TemporalType.DATE)
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstname + ", lastName=" + lastname + ", role=" + role + ", date="
-				+ date + "]";
+	public Set<UserDispo> getUserdispo() {
+		return userdispo;
 	}
+
+	public void setUserdispo(Set<UserDispo> userdispo) {
+		this.userdispo = userdispo;
+	}
+
+	
+	
+	public User() {
+		super();
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((Connecte == null) ? 0 : Connecte.hashCode());
+		result = prime * result + ((chatroom == null) ? 0 : chatroom.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -108,6 +142,7 @@ public class User  {
 		result = prime * result + ((userdispo == null) ? 0 : userdispo.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -117,6 +152,16 @@ public class User  {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (Connecte == null) {
+			if (other.Connecte != null)
+				return false;
+		} else if (!Connecte.equals(other.Connecte))
+			return false;
+		if (chatroom == null) {
+			if (other.chatroom != null)
+				return false;
+		} else if (!chatroom.equals(other.chatroom))
+			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
@@ -146,5 +191,39 @@ public class User  {
 			return false;
 		return true;
 	}
+
+	public User(Long id, String firstname, String lastname, Role role, Date date, Set<UserDispo> userdispo,
+			List<Chatroom> rooms) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.role = role;
+		this.date = date;
+		this.userdispo = userdispo;
+		//this.rooms = rooms;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", role=" + role + ", date="
+				+ date + ", userdispo=" + userdispo  + "]";
+	}
+
+	public Chatroom getChatroom() {
+		return chatroom;
+	}
+
+	public void setChatroom(Chatroom chatroom) {
+		this.chatroom = chatroom;
+	}
+
+	public User(Chatroom chatroom) {
+		super();
+		this.chatroom = chatroom;
+	}
+
+
+	
 	
 }

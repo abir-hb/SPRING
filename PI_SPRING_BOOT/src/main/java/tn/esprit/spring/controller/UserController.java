@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 
 import tn.esprit.spring.entities.User;
@@ -49,6 +50,24 @@ public class UserController implements IUserControl{
 	@Override
 	public int getNombreUserJPQL() {
 		return userService.getNombreUserJPQL();
+	}
+	@Override
+	 public String login(Long userId) {
+		userService.login(userId);
+		return null;
+	}
+	@Override
+	 public String logout(Long userId) {
+		userService.login(userId);
+		return null;
+	}
+	@Override
+	 public void KickUser(Long userId) {
+		userService.KickUser(userId);
+	}
+	
+	public Long findUserRoom(Long UserId) {
+		return userService.findUserRoom(UserId);
 	}
 
 	

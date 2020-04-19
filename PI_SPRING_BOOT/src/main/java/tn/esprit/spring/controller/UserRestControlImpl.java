@@ -67,6 +67,33 @@ import tn.esprit.spring.services.IUserService;
  		
  		return userService.getAllUsers();
  	}
-    
+ 	@PutMapping(value = "/login/{userId}") 
+	@ResponseBody
+	public String login(@PathVariable("userId") Long userIdd) {
+ 		 userService.login(userIdd);
+ 		 return "Vous etes connecte";
+ 		
+ 	}
+	@PutMapping(value = "/logout/{userId}") 
+	@ResponseBody
+	public String logout(@PathVariable("userId") Long userIdd) {
+ 		 userService.logout(userIdd);
+ 		 return "Vous etes deconnecte";
+ 		
+ 	}
+	@PutMapping(value = "/kick/{userId}") 
+	@ResponseBody
+	public String kickUser(@PathVariable("userId") Long userIdd) {
+ 		 userService.KickUser(userIdd);
+ 		 return "Vous avez bien kické l'utilisateur";
+ 		
+ 	}
+	
+	@PutMapping(value = "/findroom/{userId}") 
+	@ResponseBody
+	public Long findUserRoom(@PathVariable("userId") Long userIdd) {
+		return userService.findUserRoom(userIdd);
+
+ 	}
 	}
 

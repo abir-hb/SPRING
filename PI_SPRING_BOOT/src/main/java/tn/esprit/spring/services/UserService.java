@@ -1,11 +1,14 @@
 package tn.esprit.spring.services;
 
 
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import tn.esprit.spring.entities.Chatroom;
 import tn.esprit.spring.entities.User;
+import tn.esprit.spring.repository.ChatRoomRepository;
 import tn.esprit.spring.repository.UserRepository;
 
 import java.util.List;
@@ -15,10 +18,11 @@ import java.util.Optional;
 
 @Component
 public class UserService implements IUserService {
-
 private static final String idd = null;
 @Autowired
 UserRepository userRepository;
+@Autowired
+ChatRoomRepository chatrep;
 
 @Override
 public User addUser(User user) {
@@ -57,5 +61,44 @@ public void updateUser(Long id, String firstname, String lastname) {
 public int getNombreUserJPQL() {
 	return userRepository.countuser();
 }
+
+@Override
+public void login(Long userId) {
+	userRepository.login(userId);
+}
+@Override
+public void logout(Long userId) {
+	userRepository.logout(userId);
+}
+/*
+
+public void KickUser(Long UserId,Long id) {
+	/*
+	User userr = userRepository.findById(UserId).get();
+	List<User> list =userr.getChatroom().getUserrr();
+	userr.getChatroom()
+	list.remove(UserId);
+	userRepository.save(userr);
+	}
+	*/
+
+@Override
+public void KickUser(Long UserId) {
+	User userr = userRepository.findById(UserId).get();
+	Long roomid = userRepository.findUserRoom(UserId);
+	Chatroom chat =chatrep.findById(roomid).get();
+	int max = chat.getMaxusers();
+	chat.setMaxusers(max+1);
+	userr.setChatroom(null);
+	userRepository.save(userr);
+	chatrep.save(chat);
+}
+
+@Override
+public Long findUserRoom(Long UserId) {
+return	userRepository.findUserRoom(UserId);
+
+}
+
 	
 }
