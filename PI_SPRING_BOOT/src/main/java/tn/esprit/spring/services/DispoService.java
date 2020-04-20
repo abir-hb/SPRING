@@ -1,5 +1,6 @@
 package tn.esprit.spring.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,23 @@ public class DispoService implements IDispoService {
 	}
 
 	@Override
-	public String deleteDispo(Long DispoId) {
+	public void deleteDispo(Long DispoId) {
 		DispoRepository.deleteById(DispoId);
-		return null;
 	}
 	@Transactional
 	@Override
-	public void AjouterDispoUser(int userId, int DispoId) {
+	public String AjouterDispoUser(int userId, int DispoId) {
 		Disponibility dispoManagedEntity = DispoRepository.findById((long) DispoId).get();
 		User userManagedEntity = UserRepository.findById((long) userId).get();
+		return null;
+	}
+
+	@Override
+	public Disponibility editdispo(Long dispoId, Date date, String periode) {
+		Disponibility disp= DispoRepository.findById(dispoId).get();
+		disp.setDate(date);
+		disp.setPeriode(periode);
+		return DispoRepository.save(disp);
 		
 	}
 	

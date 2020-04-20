@@ -3,6 +3,7 @@ package tn.esprit.spring.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,8 +25,13 @@ public class RestControllerUserDispoImpl {
 	//@PutMapping(value = "/affecterMissionADepartement/{idmission}/{iddept}") 
 	@PutMapping(value = "/ajouterUserDispo/{disponibility_id}/{user_id}")
 	public String ajouterUserDispo(@PathVariable("disponibility_id") long UserId, @PathVariable("user_id") long DispoId) {
-		userdispoService.ajouterUserDispo(UserId, DispoId);
-		return "ajouter avec success";
+		return userdispoService.ajouterUserDispo(UserId, DispoId);
+
+	}
+	@DeleteMapping("/delete-user-dispo/{id}")
+	 @ResponseBody
+	 public void deletedisponibuser(@PathVariable("id")Long dispoId) {
+		userdispoService.deleteuserdispo(dispoId);
 	}
 	
 

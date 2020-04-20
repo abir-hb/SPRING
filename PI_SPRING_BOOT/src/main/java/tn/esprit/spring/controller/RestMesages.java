@@ -27,6 +27,11 @@ public class RestMesages {
 	    @ResponseBody
 	    public List<ChatMessage> CreateRoom(@PathVariable("userId") Long userId) {
 			return chatmessages.affichermesmessage(userId);
-			 
 		}
+	 @GetMapping(value = "listchat/{userId}")
+	    @ResponseBody
+	    public List<String> DisplaymsginaRoom(@PathVariable("userId") Long userId) {
+			return chatmessages.DisplaymsginaRoom(userId);
+		}
+
 }

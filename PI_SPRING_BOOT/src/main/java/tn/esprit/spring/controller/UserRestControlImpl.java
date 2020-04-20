@@ -56,7 +56,7 @@ import tn.esprit.spring.services.IUserService;
 	// URL : http://localhost:8081/SpringMVC/servlet/getNombreEmployeJPQL
     @GetMapping(value = "/nb")
     @ResponseBody
-	public int getNombreUserJPQL() {
+	public String getNombreUserJPQL() {
 		
 		return userService.getNombreUserJPQL();
 	}
@@ -70,15 +70,15 @@ import tn.esprit.spring.services.IUserService;
  	@PutMapping(value = "/login/{userId}") 
 	@ResponseBody
 	public String login(@PathVariable("userId") Long userIdd) {
- 		 userService.login(userIdd);
- 		 return "Vous etes connecte";
+ 		return userService.login(userIdd);
+ 		
  		
  	}
 	@PutMapping(value = "/logout/{userId}") 
 	@ResponseBody
 	public String logout(@PathVariable("userId") Long userIdd) {
- 		 userService.logout(userIdd);
- 		 return "Vous etes deconnecte";
+ 		return  userService.logout(userIdd);
+ 		
  		
  	}
 	@PutMapping(value = "/kick/{userId}") 

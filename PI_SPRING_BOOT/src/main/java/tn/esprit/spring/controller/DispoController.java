@@ -27,7 +27,7 @@ public class DispoController implements IDispoControl {
 
 	@Override
 	public String deleteDispo(Long DispoId) {
-		DispoService.deleteDispo(DispoId);
+		 DispoService.deleteDispo(DispoId);
 		return null;
 	}
 

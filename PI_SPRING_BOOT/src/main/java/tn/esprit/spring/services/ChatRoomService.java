@@ -5,6 +5,8 @@ package tn.esprit.spring.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -31,30 +33,87 @@ public class ChatRoomService implements IChatRoomService {
 	UserRepository user;
 	@Autowired
 	UserRepository userep;
+	Logger logger = LoggerFactory.getLogger(ChatRoomService.class);
 	
-
 	@Transactional	
 	@Override
 	public String CreateRoom(Long UserId,Long roomId) {
 		User userManagedEntity = user.findById(UserId).get();
+		
+		//logger.info(Long.toString(userroom));
+		//logger.info(userroom.toString());
+		try {
+			Long userroom=userManagedEntity.getChatroom().getId();
+			logger.info(Long.toString(userroom));
+		} catch (Exception e) {
+			Chatroom chatManagedEntity = chatroom.findById(roomId).get();
+			int max =chatManagedEntity.getMaxusers();
+			/*
+			if(userroom>0) {
+				return "Desole vous avez deja rejoindre la romm vous ne pouvez pas le rejoindre ";
+			*/
+			 if(max>0) {
+				logger.info(Integer.toString(max));
+			chatManagedEntity.setMaxusers(max-1);
+			userManagedEntity.setChatroom(chatManagedEntity);
+			userep.save(userManagedEntity);
+			return "Congratulation vous avez rejoindre la Room Num : "+roomId+"with success";
+		}
+			 else	{
+			
+			return "Desole la room num : "+roomId+" il n'il y a pas de place la room est complet";
+		}
+		}
+		return "Vous avez deja rejoindre la room ";
+	}
+	
+
+		
+	
+	
+/*
+	@Transactional	
+	@Override
+	public String CreateRoom(Long UserId,Long roomId) {
+		User userManagedEntity = user.findById(UserId).get();
+		Long romid =userManagedEntity.getChatroom().getId();
 		Chatroom chatManagedEntity = chatroom.findById(roomId).get();
+		Long chatroomid =chatManagedEntity.getId();
 		int max =chatManagedEntity.getMaxusers();
-		if(max>0) {
+		/*
+		if(chatroomid.)
+		{
+			return "La room Id que vous avez l'entrer n'existe pas ";
+		}
+		
+		 if (romid.equals(chatroomid)){
+			return "Vous etes déja dans cette ROM vous ne pouvez pas la rejoindre une autre fois !!";
+		}
+		
+		 if(max>0) {
 		chatManagedEntity.setMaxusers(max-1);
 		userManagedEntity.setChatroom(chatManagedEntity);
 		userep.save(userManagedEntity);
-		return "Congratulation vous avez rejoindre la Room Num : "+roomId+"with success";
+		return "Congratulation "+userManagedEntity.getFirstname().toUpperCase().toString()+"  vous avez rejoindre la Room Num : "+roomId+" with success";
 		}
 		else {
 			return "Desole la room num : "+roomId+" il n'il y a pas de place la room est complet";
 		}
 	}
-
+*/
 
 	@Override
 	public List<String> findUserConnecte(Long roomId) {
 				return chatroom.findUserConnecte(roomId);
 		
+	}
+
+
+	@Override
+	public String ClearRoomChat(Long roomId) {
+		Chatroom chat = chatroom.findById(roomId).get();
+		chatroom.delete(chat);
+		return "Vous avez bien supprime le chat de la room  : "+roomId;
 	}
 
 

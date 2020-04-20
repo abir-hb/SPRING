@@ -14,9 +14,9 @@ public interface IUserService {
 	String getLastNameByUserId(Long userId);
 	void deleteUser(Long userId);
 	public void updateUser(Long id, String firstname, String lastname);
-	public int getNombreUserJPQL();
-	 public void login(Long userId);
-	void logout(Long userId);
+	public String getNombreUserJPQL();
+	 public String login(Long userId);
+	public String logout(Long userId);
 	public void KickUser(Long UserId);
 	public Long findUserRoom(Long UserId);
 }

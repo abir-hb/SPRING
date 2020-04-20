@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,5 +41,9 @@ IChatRoomService ichatroom;
 		return ichatroom.findUserConnecte(roomId);
 		 
 	}
-    
+    @DeleteMapping("/clearchat/{roomId}")
+    @ResponseBody
+    public String ClearChat(@PathVariable("roomId") Long roomId) {
+    	return ichatroom.ClearRoomChat(roomId);
+    }
 }

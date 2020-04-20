@@ -19,5 +19,8 @@ public class IControllerChatRoomImpl {
 	public String findUserConnecte(Long userid,Long roomId) {
 	return	ichat.CreateRoom(userid, roomId);
 	}
+	public String ClearChatByRoomID(Long roomId) {
+		return ichat.ClearRoomChat(roomId);
+	}
 	
 }

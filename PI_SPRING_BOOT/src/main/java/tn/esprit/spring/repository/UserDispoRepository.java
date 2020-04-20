@@ -17,4 +17,9 @@ public interface UserDispoRepository extends CrudRepository<UserDispo, Long> {
 	@Query("UPDATE User u SET u.chatroom=NULL where u.id=:userId")
     public void KickUser(@Param("userId")Long userId);
     */
+	/*
+	@Query("Delete u from UserDispo u where u.user:=userId")
+    public void deletedispp(@Param("userId")Long userId);
+	*/
+	
 }

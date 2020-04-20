@@ -46,11 +46,12 @@ public class UserController implements IUserControl{
 	public void updateUser(Long id, String firstname, String lastname) {
 		 userService.updateUser(id, firstname, lastname);
 	}
-
+/*
 	@Override
-	public int getNombreUserJPQL() {
+	public String getNombreUserJPQL() {
 		return userService.getNombreUserJPQL();
 	}
+	*/
 	@Override
 	 public String login(Long userId) {
 		userService.login(userId);
@@ -68,6 +69,12 @@ public class UserController implements IUserControl{
 	
 	public Long findUserRoom(Long UserId) {
 		return userService.findUserRoom(UserId);
+	}
+
+	@Override
+	public int getNombreUserJPQL() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

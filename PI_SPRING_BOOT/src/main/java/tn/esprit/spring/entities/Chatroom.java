@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "Chatroom")
 public class Chatroom {
-	
 	@Id
 	@Column(name = "ID", unique = true, updatable = false, nullable = false)
 	@GeneratedValue

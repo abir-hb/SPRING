@@ -21,5 +21,8 @@ public class IControllerChatMessages {
 	public List<ChatMessage> FindMyMessages(Long id){
 		return msgservice.affichermesmessage(id);
 	}
+	public List<String>DisplaymsginaRoom(Long userId){
+		return msgservice.DisplaymsginaRoom(userId);
+	}
 
 }

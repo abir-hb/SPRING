@@ -40,7 +40,7 @@ public class User  {
 	Role role;
 	Date date;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     Set<UserDispo> userdispo;
 	/*
 	@JsonIgnore
@@ -61,10 +61,8 @@ public class User  {
 	private List<User> userrr = new ArrayList<>();
 	
 	 */
-	@OneToMany(mappedBy="usermessage",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="usermessage")
 	private List<ChatMessage> chatt = new ArrayList<>();
-	
-
 	public Long getId() {
 		return id;
 	}

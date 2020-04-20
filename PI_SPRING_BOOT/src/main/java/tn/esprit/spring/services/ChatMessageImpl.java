@@ -1,10 +1,13 @@
 package tn.esprit.spring.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sun.org.apache.xpath.internal.operations.And;
 
 import tn.esprit.spring.entities.ChatMessage;
 import tn.esprit.spring.entities.Chatroom;
@@ -17,6 +20,8 @@ public class ChatMessageImpl implements IChatMessageService {
 	ChatMessageRepository msg;
 	@Autowired
 	ChatMessageRepository msgg;
+	@Autowired
+	ChatMessageRepository msgs;
 	
 	@Autowired
 	UserRepository userrep;
@@ -45,4 +50,46 @@ public class ChatMessageImpl implements IChatMessageService {
 	public List<ChatMessage> affichermesmessage(Long id) {
 		List<ChatMessage> list =msgg.FindMyMessages(id);
 		return list;
-	}}
+	}
+
+	@Override
+	public List<String>DisplaymsginaRoom(Long userId) {
+		//get User all
+		User user = userrep.findById(userId).get();
+		// connecte 
+		Boolean connecte= user.getConnecte();	
+		//Recuperer l'ID
+		Long room=user.getChatroom().getId();
+		
+	List<ChatMessage> list= msgs.FindMyMessages(userId);
+	List<String> display=new ArrayList<>() ;
+	for (ChatMessage chatMessage : list) {
+	Long receiver= chatMessage.getUsermessage().getId();
+	User user2 = userrep.findById(receiver).get();
+	Long romIdUser2=user2.getChatroom().getId();
+	Boolean con2 =user2.getConnecte();
+	String name=user2.getFirstname();
+	String lastname=user2.getLastname();
+	if(con2.equals(true)&& connecte.equals(true)&& room.equals(romIdUser2)){
+		String content =chatMessage.getContent();
+		String message=chatMessage.getMessage();
+		display.add("Sender : " +name+" " +lastname);
+		display.add("Content  : " + content);
+		display.add("Messages :"+message);
+		display.add("Date : "+user2.getDate());
+	}
+		else if(con2.equals(true)|| connecte.equals(true)|| room.equals(romIdUser2)) {
+			display.add("Un utilisateur n'est pas connecte ou dans le memes ROOM ");
+}
+	}
+	if(display.isEmpty()) {
+		List<String> list2=new ArrayList<>();
+		list2.add("IL n'y a personnne connecte ou en ligne ");
+		return list2;
+	}
+	else {
+		return display;
+	}
+	}
+}
+	

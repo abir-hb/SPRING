@@ -17,7 +17,7 @@ public class IUserControllClass {
 	@Autowired
 	IUserService iuserservice;
 	
-	public int getNombreUserJPQL() {
+	public String getNombreUserJPQL() {
 		
 		return iuserservice.getNombreUserJPQL();
 	}

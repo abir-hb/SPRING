@@ -14,6 +14,6 @@ public interface IUserControl {
 	public void updateUser(Long id, String firstname, String lastname);
 	public int getNombreUserJPQL();
 	public String login(Long UserId);
-	String logout(Long userId);
+	public String logout(Long userId);
 	public void KickUser(Long userId);
 }

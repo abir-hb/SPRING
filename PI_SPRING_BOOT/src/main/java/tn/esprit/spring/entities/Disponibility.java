@@ -3,7 +3,9 @@ package tn.esprit.spring.entities;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,8 @@ public class Disponibility {
 	private String periode;
 	Date date;
 	
-	@OneToMany(mappedBy = "disponibility")
+	@OneToMany(mappedBy = "disponibility",cascade = {CascadeType.ALL}, 
+			 fetch = FetchType.LAZY)
     Set<UserDispo> userdispo;
 	
 	public Long getId() {

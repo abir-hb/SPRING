@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -24,7 +27,9 @@ public class UserDispo implements Serializable {
     @JoinColumn(name = "disponibility_id")
     Disponibility disponibility;
     
-    Boolean Dispo;
+    Boolean Dispo=true;
+    String cas;
+    String patient;
 
 	public UserDispoKey getId() {
 		return id;
@@ -63,8 +68,10 @@ public class UserDispo implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((Dispo == null) ? 0 : Dispo.hashCode());
+		result = prime * result + ((cas == null) ? 0 : cas.hashCode());
 		result = prime * result + ((disponibility == null) ? 0 : disponibility.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((patient == null) ? 0 : patient.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -83,6 +90,11 @@ public class UserDispo implements Serializable {
 				return false;
 		} else if (!Dispo.equals(other.Dispo))
 			return false;
+		if (cas == null) {
+			if (other.cas != null)
+				return false;
+		} else if (!cas.equals(other.cas))
+			return false;
 		if (disponibility == null) {
 			if (other.disponibility != null)
 				return false;
@@ -93,12 +105,47 @@ public class UserDispo implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (patient == null) {
+			if (other.patient != null)
+				return false;
+		} else if (!patient.equals(other.patient))
+			return false;
 		if (user == null) {
 			if (other.user != null)
 				return false;
 		} else if (!user.equals(other.user))
 			return false;
 		return true;
+	}
+
+	public UserDispo(UserDispoKey id, Long idd, User user, Disponibility disponibility, Boolean dispo) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.disponibility = disponibility;
+		Dispo = dispo;
+	}
+
+
+
+	public String getCas() {
+		return cas;
+	}
+
+	public void setCas(String cas) {
+		this.cas = cas;
+	}
+
+	public String getPatient() {
+		return patient;
+	}
+
+	public void setPatient(String patient) {
+		this.patient = patient;
+	}
+
+	public UserDispo() {
+		super();
 	}
     
     

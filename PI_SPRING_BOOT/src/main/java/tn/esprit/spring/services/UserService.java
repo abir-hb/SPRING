@@ -21,6 +21,9 @@ public class UserService implements IUserService {
 private static final String idd = null;
 @Autowired
 UserRepository userRepository;
+
+@Autowired
+UserRepository userrep;
 @Autowired
 ChatRoomRepository chatrep;
 
@@ -58,17 +61,24 @@ public void updateUser(Long id, String firstname, String lastname) {
 }
 
 @Override
-public int getNombreUserJPQL() {
-	return userRepository.countuser();
+public String getNombreUserJPQL() {
+	return "Le nombre des utlisateurs totale : "+userRepository.countuser();
 }
 
 @Override
-public void login(Long userId) {
-	userRepository.login(userId);
+public String login(Long userId) {
+	User userr = userrep.findById(userId).get();
+	String name= userr.getFirstname().toString();
+	userrep.login(userId);
+	return "Vous etes connecte "+name;
+	
 }
 @Override
-public void logout(Long userId) {
-	userRepository.logout(userId);
+public String logout(Long userId) {
+	User userr = userrep.findById(userId).get();
+	String name= userr.getFirstname().toString();
+	userrep.logout(userId);
+	return "Vous etes deconnecte "+name;
 }
 /*
 
