@@ -1,9 +1,14 @@
 package com.example.demo.contoller;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 public class RegisterForm {
 	private String username;
 	private String password;
 	private String repassword;
+	
+	
 
 	public String getUsername() {
 		return username;

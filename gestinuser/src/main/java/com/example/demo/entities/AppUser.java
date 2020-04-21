@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,8 +22,60 @@ public class AppUser implements Serializable {
 	private Long id;
 	@Column(unique = true)
 	private String username;
-
 	private String password;
+	private String lastName;
+	private String firstName;
+	private String email;
+	@Embedded
+	private File image;
+	
+	public AppUser(Long id, String username, String password, String lastName, String firstName, String email,
+			Collection<AppRole> roles) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.roles = roles;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public AppUser(Long id, String username, String password, String lastName, String firstName,
+			Collection<AppRole> roles) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.roles = roles;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<AppRole> roles = new ArrayList<>();
 
@@ -77,6 +130,27 @@ public class AppUser implements Serializable {
 
 	public void setRoles(Collection<AppRole> roles) {
 		this.roles = roles;
+	}
+
+	public AppUser(Long id, String username, String password, String lastName, String firstName, String email,
+			File image, Collection<AppRole> roles) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.image = image;
+		this.roles = roles;
+	}
+
+	public File getImage() {
+		return image;
+	}
+
+	public void setImage(File image) {
+		this.image = image;
 	}
 
 	@Override

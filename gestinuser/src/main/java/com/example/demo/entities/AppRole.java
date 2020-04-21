@@ -1,37 +1,46 @@
 package com.example.demo.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
-public class AppRole {
+public class AppRole implements Serializable {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long idRole;
 	private String roleName;
+//	@ManyToMany
+//	private List<AppUser> appUser;
+//	
+	
+	
+
 
 	public AppRole() {
 		super();
 	}
 
-	public AppRole(Long id, String roleName) {
-		super();
-		this.id = id;
-		this.roleName = roleName;
-	}
+	
+
+	
+
 
 	public AppRole(String roleName) {
 		super();
 		this.roleName = roleName;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getIdRole() {
+		return idRole;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdRole(Long id) {
+		this.idRole = id;
 	}
 
 	public String getRoleName() {
@@ -42,9 +51,16 @@ public class AppRole {
 		this.roleName = roleName;
 	}
 
+	
+
+
+	
+
+
+
 	@Override
 	public String toString() {
-		return "AppRole [id=" + id + ", roleName=" + roleName + "]";
+		return "AppRole [id=" + idRole + ", roleName=" + roleName + "]";
 	}
 
 	
