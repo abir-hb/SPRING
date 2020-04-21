@@ -2,6 +2,7 @@ package tn.esprit.spring.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,6 +50,12 @@ public class PostService implements IPostService {
 		post.setShare(share);
 		post.setDate(date);
 		PostRepository.save(post);
+	}
+	
+	@Override
+	public Optional<Post> findByDate(Date date) {
+
+		return PostRepository.findByDate(date);
 	}
 	
 

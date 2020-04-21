@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -59,4 +60,8 @@ public class PostRestController {
 			
 	}
 	
+	@GetMapping(value = "/search/{date}")
+	public Optional<Post> findByDate(@PathVariable("date") Date date){
+		return PostService.findByDate(date);
+	}
 }
