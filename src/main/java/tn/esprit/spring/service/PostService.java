@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,17 @@ public class PostService implements IPostService {
 		return null;
 	}
 	
+	@Override
+	public void updatePost(Long id, int likes, String comments, int blocked, String category, int share, Date date) {
+		Post post = PostRepository.findById(id).get();
+		post.setBlocked(blocked);
+		post.setLikes(likes);
+		post.setComments(comments);
+		post.setCategory(category);
+		post.setShare(share);
+		post.setDate(date);
+		PostRepository.save(post);
+	}
 	
 
 }
