@@ -1,67 +1,39 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UserDispo implements Serializable {
 	private static final long serialVersionUID = 3876346912862238239L;
-	@EmbeddedId
-	private UserDispoKey id;
-	
-	@ManyToOne
-    @MapsId("user_id")
-    @JoinColumn(name = "user_id")
-    User user;
- 
-    @ManyToOne
-    @MapsId("disponibility_id")
-    @JoinColumn(name = "disponibility_id")
-    Disponibility disponibility;
-    
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	private Long id;
+	 
     Boolean Dispo=true;
     String cas;
+   
     String patient;
-
-	public UserDispoKey getId() {
-		return id;
-	}
-
-	public void setId(UserDispoKey id) {
-		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Disponibility getDisponibility() {
-		return disponibility;
-	}
-
-	public void setDisponibility(Disponibility disponibility) {
-		this.disponibility = disponibility;
-	}
-
-	public Boolean getDispo() {
-		return Dispo;
-	}
-
-	public void setDispo(Boolean dispo) {
-		Dispo = dispo;
-	}
+    String dispo_id;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userDispo_id")
+    private User userDispo;
 
 	@Override
 	public int hashCode() {
@@ -69,10 +41,9 @@ public class UserDispo implements Serializable {
 		int result = 1;
 		result = prime * result + ((Dispo == null) ? 0 : Dispo.hashCode());
 		result = prime * result + ((cas == null) ? 0 : cas.hashCode());
-		result = prime * result + ((disponibility == null) ? 0 : disponibility.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((patient == null) ? 0 : patient.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userDispo == null) ? 0 : userDispo.hashCode());
 		return result;
 	}
 
@@ -95,11 +66,6 @@ public class UserDispo implements Serializable {
 				return false;
 		} else if (!cas.equals(other.cas))
 			return false;
-		if (disponibility == null) {
-			if (other.disponibility != null)
-				return false;
-		} else if (!disponibility.equals(other.disponibility))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -110,23 +76,29 @@ public class UserDispo implements Serializable {
 				return false;
 		} else if (!patient.equals(other.patient))
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		if (userDispo == null) {
+			if (other.userDispo != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!userDispo.equals(other.userDispo))
 			return false;
 		return true;
 	}
 
-	public UserDispo(UserDispoKey id, Long idd, User user, Disponibility disponibility, Boolean dispo) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.disponibility = disponibility;
-		Dispo = dispo;
+	public Long getId() {
+		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public Boolean getDispo() {
+		return Dispo;
+	}
+
+	public void setDispo(Boolean dispo) {
+		Dispo = dispo;
+	}
 
 	public String getCas() {
 		return cas;
@@ -144,9 +116,57 @@ public class UserDispo implements Serializable {
 		this.patient = patient;
 	}
 
+	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getDispo_id() {
+		return dispo_id;
+	}
+
+	public void setDispo_id(String dispo_id) {
+		this.dispo_id = dispo_id;
+	}
+
+	public UserDispo(Long id, Boolean dispo, String cas, String patient, UserDispo userDispo) {
+		super();
+		this.id = id;
+		Dispo = dispo;
+		this.cas = cas;
+		this.patient = patient;
+		//this.userDispo = userDispo;
+	}
+
 	public UserDispo() {
 		super();
 	}
+
+	public User getUserDispo() {
+		return userDispo;
+	}
+
+	public void setUserDispo(User userDispo) {
+		this.userDispo = userDispo;
+	}
+
+	public UserDispo(Long id, Boolean dispo, String cas, String patient, String dispo_id, User userDispo) {
+		super();
+		this.id = id;
+		Dispo = dispo;
+		this.cas = cas;
+		this.patient = patient;
+		this.dispo_id = dispo_id;
+		this.userDispo = userDispo;
+	}
+
+	
     
+  
+   
+
+
+	
     
 }

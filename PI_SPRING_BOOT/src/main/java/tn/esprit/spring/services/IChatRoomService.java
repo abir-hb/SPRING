@@ -12,12 +12,4 @@ public interface IChatRoomService {
 	
 		
 	}
-	/*
-	List<User> getAllUsers();
-	String getFirstNameByUserId(Long userId);
-	String getLastNameByUserId(Long userId);
-	void deleteUser(Long userId);
-	public void updateUser(Long id, String firstname, String lastname);
-	public int getNombreUserJPQL();
-	*/
 

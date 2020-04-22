@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,12 +30,14 @@ public class Disponibility {
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
 	
+	
 	private String periode;
 	Date date;
 	
-	@OneToMany(mappedBy = "disponibility",cascade = {CascadeType.ALL}, 
-			 fetch = FetchType.LAZY)
-    Set<UserDispo> userdispo;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+	
 	
 	public Long getId() {
 		return id;
@@ -43,6 +47,13 @@ public class Disponibility {
 	}
 	public String getPeriode() {
 		return periode;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public void setPeriode(String periode) {
 		this.periode = periode;
@@ -61,7 +72,7 @@ public class Disponibility {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((periode == null) ? 0 : periode.hashCode());
-		result = prime * result + ((userdispo == null) ? 0 : userdispo.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 	@Override
@@ -88,10 +99,10 @@ public class Disponibility {
 				return false;
 		} else if (!periode.equals(other.periode))
 			return false;
-		if (userdispo == null) {
-			if (other.userdispo != null)
+		if (user == null) {
+			if (other.user != null)
 				return false;
-		} else if (!userdispo.equals(other.userdispo))
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}
@@ -104,6 +115,7 @@ public class Disponibility {
 	public Disponibility() {
 		super();
 	}
+
 	
 	
 

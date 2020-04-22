@@ -9,6 +9,7 @@ public interface IDispoControl {
 	Disponibility addDispo(Disponibility dispo);
 	String deleteDispo(Long DispoId);
 	List<Disponibility> getAllDispo();
-	public void AjouterDispoUser(int user, int Dispo);
-
+	//public void AjouterDispoUser(Long user,Long Dispo);
+	public String ajouterUserDispo(Long userId,Long DispoId);
+	public List<String> findMyDispnibite(Long UserId);
 }

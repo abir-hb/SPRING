@@ -7,9 +7,12 @@ import tn.esprit.spring.entities.Disponibility;
 
 public interface IDispoService {
 	Disponibility addDispo(Disponibility dispo);
-	public Disponibility editdispo(Long dispoId,Date date,String periode );
+	public String AffecterDispo(Long UserId,Long DispID);
+	public Disponibility editdispo(Long dispoId,String date,String periode );
 	void deleteDispo(Long DispoId);
 	List<Disponibility> getAllDispo();
-	public String AjouterDispoUser(int user, int Dispo);
+	//public String AjouterDispoUser(Long user, Long Dispo);
+	String ajouterUserDispo(long UserId, long DispoId);
+	public List<String> findMyDispnibite(Long UserId);
 
 }

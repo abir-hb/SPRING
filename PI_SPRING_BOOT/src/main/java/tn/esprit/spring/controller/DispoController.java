@@ -31,10 +31,21 @@ public class DispoController implements IDispoControl {
 		return null;
 	}
 
-	@Override
-	public void AjouterDispoUser(int user, int Dispo) {
-		// TODO Auto-generated method stub
-		
+	
+	public String AffecterDispo(Long UserId, Long DispID) {
+		return DispoService.AffecterDispo(UserId, DispID);
 	}
 
+	@Override
+	public String ajouterUserDispo(Long userId, Long DispoId) {
+		
+		return DispoService.ajouterUserDispo(userId, DispoId);
+	}
+
+	@Override
+	public List<String> findMyDispnibite(Long UserId) {
+		return DispoService.findMyDispnibite(UserId);
+	}
+	
+	
 }
