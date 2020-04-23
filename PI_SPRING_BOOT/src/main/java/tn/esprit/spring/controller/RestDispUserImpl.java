@@ -19,6 +19,6 @@ public class RestDispUserImpl {
 	
 	@PutMapping(value = "/AddDispoUrgent/{UserId}/{DispoId}")
 	public String ajouterUserDispoUrgent(@PathVariable("UserId")long UserId,@PathVariable("DispoId") long DispoId) {
-		return	iuserdisposervice.ajouterUserDispo(UserId, DispoId);
+		return	iuserdisposervice.ajouterUserDispoUrgent(UserId, DispoId);
 }
 }
