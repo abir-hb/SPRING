@@ -26,13 +26,12 @@ public class UserDispoServices implements IUserDispoService {
 	
 	
 	Logger logger = LoggerFactory.getLogger(ChatRoomService.class);
-	
+	//hi
 	@Override
 	public String ajouterUserDispo(long UserId, long DispoId) {
 		User u1 =userRepository.findById(UserId).get();
 		Disponibility d = dispRepository.findById(DispoId).get();
-	
-		if(u1.getRole().equals("DOCTOR")) {
+			if(u1.getRole().equals("DOCTOR")) {
 			return "Vous etes medecin vous ne pouvez pas prendre un rendez vous";
 		}
 		else {
