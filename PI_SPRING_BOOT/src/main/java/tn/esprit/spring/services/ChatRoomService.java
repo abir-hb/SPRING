@@ -37,6 +37,14 @@ public class ChatRoomService implements IChatRoomService {
 	
 	@Transactional	
 	@Override
+	public void KickUser(Long userId) {
+		User userr = user.findById(userId).get();
+		userr.setChatroom(null);
+		user.save(userr);
+	}
+	
+	@Transactional	
+	@Override
 	public String CreateRoom(Long UserId,Long roomId) {
 		User userManagedEntity = user.findById(UserId).get();
 		
@@ -66,56 +74,23 @@ public class ChatRoomService implements IChatRoomService {
 		}
 		return "Vous avez deja rejoindre la room ";
 	}
-	
-
-		
-	
-	
-/*
-	@Transactional	
-	@Override
-	public String CreateRoom(Long UserId,Long roomId) {
-		User userManagedEntity = user.findById(UserId).get();
-		Long romid =userManagedEntity.getChatroom().getId();
-		Chatroom chatManagedEntity = chatroom.findById(roomId).get();
-		Long chatroomid =chatManagedEntity.getId();
-		int max =chatManagedEntity.getMaxusers();
-		/*
-		if(chatroomid.)
-		{
-			return "La room Id que vous avez l'entrer n'existe pas ";
-		}
-		
-		 if (romid.equals(chatroomid)){
-			return "Vous etes déja dans cette ROM vous ne pouvez pas la rejoindre une autre fois !!";
-		}
-		
-		 if(max>0) {
-		chatManagedEntity.setMaxusers(max-1);
-		userManagedEntity.setChatroom(chatManagedEntity);
-		userep.save(userManagedEntity);
-		return "Congratulation "+userManagedEntity.getFirstname().toUpperCase().toString()+"  vous avez rejoindre la Room Num : "+roomId+" with success";
-		}
-		else {
-			return "Desole la room num : "+roomId+" il n'il y a pas de place la room est complet";
-		}
-	}
-*/
-
 	@Override
 	public List<String> findUserConnecte(Long roomId) {
-				return chatroom.findUserConnecte(roomId);
-		
+			return chatroom.findUserConnecte(roomId);
 	}
-
-
 	@Override
 	public String ClearRoomChat(Long roomId) {
 		Chatroom chat = chatroom.findById(roomId).get();
 		chatroom.delete(chat);
 		return "Vous avez bien supprime le chat de la room  : "+roomId;
 	}
-
-
-
+	@Transactional
+	@Override
+	public void kick(Long userId) {
+		User userr = user.findById(userId).get();
+		userr.setChatroom(null);
+		user.save(userr);
+		
+	}
+	
 }

@@ -19,4 +19,5 @@ public interface IUserService {
 	public String logout(Long userId);
 	public void KickUser(Long UserId);
 	public Long findUserRoom(Long UserId);
+	public String dologin();
 }

@@ -46,4 +46,9 @@ IChatRoomService ichatroom;
     public String ClearChat(@PathVariable("roomId") Long roomId) {
     	return ichatroom.ClearRoomChat(roomId);
     }
+
+    @PutMapping(value = "/kick/{user_id}")
+	public void kickUser(@PathVariable("user_id") long user_id) {
+			iuserservices.KickUser(user_id);
+	}
 }

@@ -26,7 +26,7 @@ public class UserDispoServices implements IUserDispoService {
 	
 	
 	Logger logger = LoggerFactory.getLogger(ChatRoomService.class);
-	//hi
+
 	@Override
 	public String ajouterUserDispo(long UserId, long DispoId) {
 		User u1 =userRepository.findById(UserId).get();

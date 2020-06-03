@@ -110,5 +110,11 @@ return	userRepository.findUserRoom(UserId);
 
 }
 
+@Override
+public String dologin() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 	
 }
