@@ -35,6 +35,8 @@ public class ChatRoomService implements IChatRoomService {
 	UserRepository userep;
 	Logger logger = LoggerFactory.getLogger(ChatRoomService.class);
 	
+	
+	
 	@Transactional	
 	@Override
 	public void KickUser(Long userId) {
@@ -91,6 +93,12 @@ public class ChatRoomService implements IChatRoomService {
 		userr.setChatroom(null);
 		user.save(userr);
 		
+	}
+	
+	@Override
+	public Chatroom AddRoom(Chatroom chat) {
+		
+		return chatroom.save(chat);
 	}
 	
 }

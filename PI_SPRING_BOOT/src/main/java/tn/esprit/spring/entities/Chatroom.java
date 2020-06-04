@@ -54,6 +54,15 @@ public class Chatroom {
 
 
 
+	public Chatroom(String roomname, String roomtype, int maxusers) {
+		super();
+		this.roomname = roomname;
+		this.roomtype = roomtype;
+		this.maxusers = maxusers;
+	}
+
+
+
 	public Chatroom(long id) {
 		super();
 		this.id = id;

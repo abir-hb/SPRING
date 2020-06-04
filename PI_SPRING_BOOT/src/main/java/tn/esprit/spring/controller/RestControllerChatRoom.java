@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Chatroom;
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.services.IChatRoomService;
@@ -51,4 +54,17 @@ IChatRoomService ichatroom;
 	public void kickUser(@PathVariable("user_id") long user_id) {
 			iuserservices.KickUser(user_id);
 	}
+    @PostMapping("/addroom")
+    @ResponseBody
+	public Chatroom AddRoom(@RequestBody Chatroom c) {
+    	
+    	return ichatroom.AddRoom(c);
+    }
+    
+    @PutMapping(value = "/createchat/{roomname}/{roomtype}/{maxusers}")
+public Chatroom AddRooms(@PathVariable("roomname") String roomnames,@PathVariable("roomtype") String roomtypes,@PathVariable("maxusers") int maxuserss) {
+    	Chatroom a =new Chatroom(roomnames,roomtypes,maxuserss);
+    	return ichatroom.AddRoom(a);
+    }
+		
 }
