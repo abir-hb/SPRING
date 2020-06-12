@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
-	<artifactId>spring-pdev-consomitounsi</artifactId>
+	<artifactId>GestionJardin</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
-	<name>spring-pdev-consomitounsi</name>
-	<description>spring-pdev-consomitounsi</description>
+	<name>GestionJardin</name>
+	<description>GestionJardin</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -77,11 +77,6 @@
 			<version>2.2.5.RELEASE</version>
 </dependency>
 
-<dependency>
-	<groupId>mysql</groupId>
-	<artifactId>mysql-connector-java</artifactId>
-	<scope>runtime</scope>
-</dependency>
 
 <dependency>
 <groupId>org.apache.myfaces.core</groupId>

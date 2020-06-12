@@ -39,25 +39,25 @@
                 <div class="form-group">
                   <div >
                   <h5>Username</h5>
-                  						<h:inputText class="form-control form-control-user" type="text" name="username" value="#{registerController.username}"  />
+    <h:inputText class="form-control form-control-user" type="text" name="username" value="#{RegisterController.username}"  />
                   
                   </div>
                   
                 </div>
                 <div class="form-group">
                 <h5>Password</h5>
-                						<h:inputSecret class="form-control form-control-user" type="text"  name="password" value="#{registerController.password}"  />
+                						<h:inputSecret class="form-control form-control-user" type="text"  name="password" value="#{RegisterController.password}"  />
                 
                 </div>
                 <div class="form-group ">
                   <div >
                   <h5>Email Address</h5>
-                						<h:inputText class="form-control form-control-user" type="text" name="email" value="#{registerController.email}"  />
+                						<h:inputText class="form-control form-control-user" type="text" name="email" value="#{RegisterController.email}"  />
                   
                   </div>
                 
                 </div>
-                							<h:commandButton class="btn btn-primary btn-user btn-block" value="Register Account" action="#{registerController.doSignup()}" />
+                							<h:commandButton class="btn btn-primary btn-user btn-block" value="Register Account" action="#{RegisterController.doSignup()}" />
                  <a href="loginpage.jsf" class="btn btn-primary btn-user btn-block" > 
                   Sign In
 

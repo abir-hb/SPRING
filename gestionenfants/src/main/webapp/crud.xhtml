@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+<ui:composition template="template.xhtml">
+    
+
+<ui:define name="content">
+<!--   <h:form enctype="multipart/form-data">   -->
+  <h:form >  
+  <p:growl id="growl" life="2000" />
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+ <h:panelGroup columns="2">
+	
+		<table>
+			<tr>
+				<td><h:outputText value="Email"></h:outputText></td>
+				<td><h:inputText value="#{crudController.email}"   required="true" requiredMessage="
+field Email is required" >     <f:validateRegex pattern=".+[@].+[.].+" />                   </h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="Mot de Passe"></h:outputText></td>
+				<td><h:inputSecret value="#{crudController.password}"  required="true" requiredMessage="
+field Mot de passe is required"></h:inputSecret></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="LastName"></h:outputText></td>
+				<td><h:inputText value="#{crudController.lastName}"  required="true" requiredMessage="
+field lastName is required"></h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="fristName"></h:outputText></td>
+				<td><h:inputText value="#{crudController.fristName}"  required="true" requiredMessage="
+field fristName is required"></h:inputText></td>
+			</tr>
+
+			<tr>
+				<td><h:outputText value="Actif / Inactif"></h:outputText></td>
+				<td><h:selectBooleanCheckbox
+						value="#{crudController.etatAcc}"></h:selectBooleanCheckbox></td>
+			</tr>
+<!-- 			ici ili faut cacher -->
+<!-- 			<tr> -->
+<!-- 				<p:fileUpload value="#{crudController.file}" mode="simple" skinSimple="true"/> -->
+<!-- 			</tr> -->
+			
+			
+			<tr>
+				<td colspan="2"><p:commandButton
+						action="#{crudController.ajouterEmploye()}" 
+						 value="Ajouter User"  ajax="false" /></td>
+				</tr>
+			<tr>
+			<td colspan="2"><p:commandButton 
+					action="#{crudController.mettreAjourEmploye()}"
+					value="Mettre a jour user" ajax="false" /></td>
+					</tr>
+			
+		</table>
+	
+</h:panelGroup>
+</h:form>
+<h:form>
+<h:panelGroup columns="2">
+	
+
+		<p:dataTable value="#{crudController.employes}" var="employe"
+			border="1">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="email" />
+				</f:facet>
+				<h:outputText value="#{employe.email}" />
+			</p:column>
+<!-- 			<p:column> -->
+<!-- 				<f:facet name="header"> -->
+<!-- 					<h:outputText value="password" /> -->
+<!-- 				</f:facet> -->
+<!-- 				<h:outputText value="#{employe.password}" /> -->
+<!-- 			</p:column> -->
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="lastName" />
+				</f:facet>
+				<h:outputText value="#{employe.lastName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="fristName" />
+				</f:facet>
+				<h:outputText value="#{employe.fristName}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Actif" />
+				</f:facet>
+				<h:outputText value=" #{employe.etatAcc == true ? 'Oui' : 'Non'}" />
+			</p:column>
+			
+			 <p:column headerText="Image">
+			 <f:facet name="header">
+					<h:outputText value="Image" />
+				</f:facet>
+  <h:graphicImage url="http://localhost:8085/file/image/#{employe.id}" height="100px" width="100px" />
+ 
+     </p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Action" />
+				</f:facet>
+				<p:commandButton 
+					action="#{crudController.removeEmploye(employe.id)}"
+					value="Supprimer" ajax="false" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Action" />
+				</f:facet>
+				<p:commandButton action="#{crudController.modifier(employe)}"
+					value="Modifier"  ajax="false"/>
+
+			</p:column>
+
+
+		</p:dataTable>
+
+</h:panelGroup>
+ 
+				
+				
+				
+				
+	</h:form>			
+				
+</ui:define>
+</ui:composition>
+</html>

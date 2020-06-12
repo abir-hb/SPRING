@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+<ui:composition template="template.xhtml">
+    
+
+<ui:define name="content">
+<h:form>
+ <p:growl id="growl" life="2000" />
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+ <h:panelGroup columns="2">
+	
+		<table>
+			<tr>
+				<td><h:outputText value="Email"></h:outputText></td>
+				<td><h:inputText value="#{employeController.email}"  required="true" requiredMessage="
+field lastName is required">  <f:validateRegex pattern=".+[@].+[.].+" />  </h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="Login"></h:outputText></td>
+				<td><h:inputText value="#{employeController.login}"  required="true" requiredMessage="
+field lastName is required">></h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="Mot de Passe"></h:outputText></td>
+				<td><h:inputSecret value="#{employeController.password}" required="true" requiredMessage="
+field lastName is required">></h:inputSecret></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="Role"></h:outputText> <h:selectOneMenu
+						value="#{employeController.role}" required="true">
+						<f:selectItems value="#{data.roles}" />
+					</h:selectOneMenu></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="Actif / Inactif"></h:outputText></td>
+				<td><h:selectBooleanCheckbox
+						value="#{employeController.isActif}"></h:selectBooleanCheckbox></td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandLink value="Ajouter Employé"
+						action="#{employeController.ajouterEmploye()}" /></td>
+				<td></td>
+			</tr>
+			<td colspan="2"><h:commandButton
+					action="#{employeController.mettreAjourEmploye()}"
+					value="Mettre a jour employe" /></td>
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+	
+</h:panelGroup>
+<h:panelGroup columns="2">
+
+
+		<h:dataTable value="#{employeController.employes}" var="employe"
+			border="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="email" />
+				</f:facet>
+				<h:outputText value="#{employe.email}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Role" />
+				</f:facet>
+				<h:outputText value="#{employe.role}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Actif" />
+				</f:facet>
+				<h:outputText value=" #{employe.isActif == true ? 'Oui' : 'Non'}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Action" />
+				</f:facet>
+				<h:commandButton
+					action="#{employeController.removeEmploye(employe.id)}"
+					value="Supprimer" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Action" />
+				</f:facet>
+				<h:commandButton action="#{employeController.modifier(employe)}"
+					value="Modifier" />
+
+			</h:column>
+
+
+		</h:dataTable>
+	
+</h:panelGroup>
+ 
+				
+				
+				
+				
+	</h:form>			
+				
+</ui:define>
+</ui:composition>
+</html>

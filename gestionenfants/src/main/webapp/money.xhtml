@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+<ui:composition template="template.xhtml">
+    
+
+<ui:define name="content">
+<h:form>
+ <h:panelGroup columns="2">
+	
+		<table>
+			<tr>
+				<td>	<h:outputText value="Code1 :"></h:outputText></td>
+				<td><h:inputText value="#{paimentController.code1}"></h:inputText></td>
+			</tr>
+			<tr>
+				<td>	<h:outputText value="Code2:"></h:outputText></td>
+				<td><h:inputText value="#{paimentController.code2}"></h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputText value="Montant :"></h:outputText></td>
+				<td><h:inputText value="#{paimentController.montant}"></h:inputText></td>
+			</tr>
+			
+			<tr>
+			<td colspan="2"><h:commandButton action="#{paimentController.verser}"
+						value="Verser">
+					</h:commandButton></td></tr>
+			<tr>
+			<td colspan="2"><h:commandButton action="#{paimentController.retirer}"
+						value="Retirer">
+					</h:commandButton></td></tr>
+			<tr>
+			<td colspan="2"><h:commandButton action="#{paimentController.virement}"
+						value="Virement">
+					</h:commandButton></td></tr>
+			
+			
+			
+		</table>
+	
+</h:panelGroup>
+<h:panelGroup columns="2">
+
+
+		<p:dataTable value="#{paimentController.listComptes}" var="cp" 
+			border="1">
+			<p:column>
+			<f:facet name="header">
+			<h:outputText value="CODE"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cp.code}"></h:outputText>
+			</p:column>
+			<p:column>
+			<f:facet name="header">
+			<h:outputText value="Solde"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cp.solde}"></h:outputText>
+			</p:column>
+			<p:column>
+			<f:facet name="header">
+			<h:outputText value="Date"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cp.dateCreation}"></h:outputText>
+			</p:column>
+			
+			
+
+
+		</p:dataTable>
+	
+</h:panelGroup>
+ 
+				
+				
+				
+				
+	</h:form>			
+				
+</ui:define>
+</ui:composition>
+</html>
